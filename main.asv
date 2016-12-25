@@ -1,0 +1,35 @@
+clear
+
+IMAGE_PATH = 'D:\umkc\courses\Neural Net\project\final\Final_Project2\'
+list_dir = dir(IMAGE_PATH);
+
+k = 1
+main_str = ''
+data_str = ''
+for i = 1:length(list_dir)
+  names = list_dir(i).name
+  
+  if(strncmp(names, 'T', 1))
+     %display('ddddddddddddddddddddddd')
+     list_files = strcat(IMAGE_PATH, names)
+     main_str{k} = names
+     main_str{k} = main_str{k}(1:end-4)
+     k = k + 1
+     cc = load(list_files)
+     data_str{k} = cc
+     %display(list_files)
+  end
+  
+end
+
+k = 1
+for i = 1:length(main_str)
+     if(strncmp(main_str{i}, 'Train', 5))
+         pp = main_str{i}
+         main_c_str{k} = num2cell(pp, 1)
+         k = k + 1
+     end
+end     
+         
+
+save('data_main.mat')
